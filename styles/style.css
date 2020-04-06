@@ -37,6 +37,7 @@ nav {
   transition: 0.2s ease-out;
   padding: 5px 0 0 0;
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .tech-logo-container {
@@ -92,12 +93,11 @@ nav {
   align-self: center;
   font-size: 1.3rem;
   font-weight: 600;
-  border-bottom: 2px solid #fff;
   transition: border-bottom 0.2s ease-out;
 }
 
 .course-card__title:hover {
-  border-bottom: 2px solid #000;
+  color: rgb(231, 85, 85);
 }
 
 .course-card__thumb {
@@ -123,6 +123,12 @@ nav {
 
 .values__author {
   vertical-align: middle;
+}
+
+.values__reviews {
+  color: rgb(112, 112, 112);
+  font-weight: 100;
+  font-size: 1.05rem;
 }
 
 .course-card__values .rrss-logo {
