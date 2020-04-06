@@ -1,3 +1,7 @@
+:root {
+  --hoover-color: rgba(219, 219, 219, 0.322);
+}
+
 * {
   font-family: 'IBM Plex Sans', sans-serif;
   box-sizing: border-box;
@@ -24,7 +28,7 @@ nav {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   justify-content: space-between;
-  margin: 10px auto;
+  margin: 20px auto;
 }
 
 .tech-container {
@@ -32,13 +36,13 @@ nav {
   cursor: pointer;
   transition: 0.2s ease-out;
   padding: 5px 0 0 0;
+  margin-bottom: 20px;
 }
 
 .tech-logo-container {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-bottom: 5px;
 }
 
 .tech-container span {
@@ -47,5 +51,89 @@ nav {
 
 .tech-container:hover {
   transform: scale(0.95);
-  background-color: rgba(219, 219, 219, 0.322);
+  background-color: var(--hoover-color);
+}
+
+.tech-container--active {
+  transform: scale(0.95);
+  background-color: var(--hoover-color);
+}
+
+.courses-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.course-card {
+  display: grid;
+  grid-template-areas:
+    'name name'
+    'thumb values'
+    'desc desc';
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  border: 1px solid rgb(226, 226, 226);
+  transition: background-color 0.2s ease-out;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.course-card:hover {
+  background-color: var(--hoover-color);
+  cursor: pointer;
+}
+
+.course-card__title {
+  grid-area: name;
+  justify-self: center;
+  align-self: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-bottom: 2px solid #fff;
+  transition: border-bottom 0.2s ease-out;
+}
+
+.course-card__title:hover {
+  border-bottom: 2px solid #000;
+}
+
+.course-card__thumb {
+  grid-area: thumb;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.thumb__img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.course-card__values {
+  grid-area: values;
+  padding-left: 15px;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.values__author {
+  vertical-align: middle;
+}
+
+.course-card__values .rrss-logo {
+  transition: transform 0.2s ease-out;
+}
+
+.course-card__values .rrss-logo:hover {
+  transform: scale(1.3);
+}
+
+.course-card__desc {
+  grid-area: desc;
+  padding: 5px;
 }
