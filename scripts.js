@@ -1,5 +1,6 @@
 const coursesContainer = document.getElementById('courses-container');
 const coursesNumber = document.getElementById('courses-number');
+const techElements = [...document.querySelectorAll('.tech-container')];
 
 const courses = [
   {
@@ -70,6 +71,38 @@ const courses = [
 
 coursesNumber.textContent = courses.length;
 
+let coursesToShow = [...courses];
+
+const filterCourses = () => {
+  const filtered = techElements
+    .filter((el) => el.classList.contains('tech-container--active'))
+    .map((el) => el.attributes['data-tech'].value);
+
+  if (filtered.length === 0) {
+    coursesToShow = [...courses];
+  } else {
+    coursesToShow = courses.filter((course) =>
+      filtered.includes(...course.tags)
+    );
+  }
+
+  renderCourseCards(coursesToShow);
+};
+
+const renderCourseCards = (courses) => {
+  coursesContainer.innerHTML = '';
+  courses.forEach((course) => {
+    coursesContainer.appendChild(createCourseCard(course));
+  });
+};
+
+techElements.forEach((element) =>
+  element.addEventListener('click', () => {
+    element.classList.toggle('tech-container--active');
+    filterCourses();
+  })
+);
+
 const formatNumber = (number) => {
   return String(number).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,');
 };
@@ -102,6 +135,4 @@ const createCourseCard = (course) => {
   return card;
 };
 
-courses.forEach((course) => {
-  coursesContainer.appendChild(createCourseCard(course));
-});
+renderCourseCards(coursesToShow);

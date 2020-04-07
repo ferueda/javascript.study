@@ -52,8 +52,11 @@ nav {
 
 .tech-container:hover {
   transform: scale(0.95);
-  background-color: var(--hoover-color);
 }
+
+/* .tech-container:active {
+  transform: scale(0.9);
+} */
 
 .tech-container--active {
   transform: scale(0.95);
