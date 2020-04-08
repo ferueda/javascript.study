@@ -10,7 +10,7 @@ const courses = [
     author: 'Brad Traversy',
     platform: 'Udemy',
     url: 'https://www.udemy.com/course/modern-javascript-from-the-beginning/',
-    tags: ['javascript'],
+    tags: ['javascript', 'react'],
     thumbnail: 'https://img-a.udemycdn.com/course/480x270/1463348_52a4_2.jpg',
     platformLogo: '/view/assets/logos/udemy-2.svg',
     rating: 4.7,
@@ -91,8 +91,16 @@ const filterCourses = () => {
 
 const renderCourseCards = (courses) => {
   coursesContainer.innerHTML = '';
+  if (courses.length === 0) {
+    const noCourseDiv = createEmptyDiv();
+    coursesContainer.appendChild(noCourseDiv);
+    noCourseDiv.classList.add('mounted');
+    noCourseDiv.style.textAlign = 'center';
+  }
   courses.forEach((course) => {
-    coursesContainer.appendChild(createCourseCard(course));
+    const card = createCourseCard(course);
+    coursesContainer.appendChild(card);
+    card.classList.add('mounted');
   });
 };
 
@@ -107,9 +115,18 @@ const formatNumber = (number) => {
   return String(number).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,');
 };
 
+const createEmptyDiv = () => {
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <h2>Oops... looks like there are no courses right now</h2>
+  `;
+  return div;
+};
+
 const createCourseCard = (course) => {
   const card = document.createElement('div');
   card.classList.add('course-card');
+  card.setAttribute('data-groups', `[${course.tags.map((tag) => `"${tag}"`)}]`);
   card.addEventListener('click', () => window.open(course.url, '_blank'));
   card.innerHTML = `
     <div class="course-card__title">${course.name}</div>

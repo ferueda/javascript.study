@@ -25,13 +25,15 @@ header {
 
 nav {
   max-width: 800px;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
   justify-content: space-between;
   margin: 20px auto;
 }
 
 .tech-container {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 120px;
   text-align: center;
   cursor: pointer;
   transition: 0.2s ease-out;
@@ -67,8 +69,13 @@ nav {
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
-  gap: 15px;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 15px;
+}
+
+.mounted {
+  opacity: 1;
+  animation: fadein 0.5s ease;
 }
 
 .course-card {
@@ -145,4 +152,13 @@ nav {
 .course-card__desc {
   grid-area: desc;
   padding: 5px;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
