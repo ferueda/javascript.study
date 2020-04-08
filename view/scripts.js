@@ -124,7 +124,6 @@ techElements.forEach((element) =>
   element.addEventListener('click', () => {
     element.classList.toggle('tech-container--active');
     filterCourses();
-    filterCourses2();
   })
 );
 
@@ -154,7 +153,7 @@ const createCourseCard = (course) => {
     </div>
     <div class="course-card__values">
       <div class="values__author">by <strong>${course.author} </strong></div>
-      <div>&#11088; ${course.rating} ${
+      <div class="values__reviews-container">&#11088; ${course.rating} ${
     course.students
       ? `<span class="values__reviews">(${formatNumber(
           course.students
