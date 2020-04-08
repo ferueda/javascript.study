@@ -73,6 +73,22 @@ coursesNumber.textContent = courses.length;
 
 let coursesToShow = [...courses];
 
+// const filterCourses = () => {
+//   const filtered = techElements
+//     .filter((el) => el.classList.contains('tech-container--active'))
+//     .map((el) => el.attributes['data-tech'].value);
+
+//   if (filtered.length === 0) {
+//     coursesToShow = [...courses];
+//   } else {
+//     coursesToShow = courses.filter((course) => {
+//       return filtered.includes(...course.tags);
+//     });
+//   }
+
+//   renderCourseCards(coursesToShow);
+// };
+
 const filterCourses = () => {
   const filtered = techElements
     .filter((el) => el.classList.contains('tech-container--active'))
@@ -82,7 +98,7 @@ const filterCourses = () => {
     coursesToShow = [...courses];
   } else {
     coursesToShow = courses.filter((course) =>
-      filtered.includes(...course.tags)
+      course.tags.some((tag) => filtered.includes(tag))
     );
   }
 
@@ -108,6 +124,7 @@ techElements.forEach((element) =>
   element.addEventListener('click', () => {
     element.classList.toggle('tech-container--active');
     filterCourses();
+    filterCourses2();
   })
 );
 

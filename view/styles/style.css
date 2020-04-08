@@ -18,9 +18,15 @@ body {
 
 header {
   background: rgb(0, 0, 0);
+  font-size: 1.25rem;
+  padding: 15px 0;
   text-align: center;
-  height: 15vh;
+  height: auto;
   color: #fff;
+}
+
+header h1 {
+  margin-bottom: 20px;
 }
 
 nav {
@@ -75,7 +81,7 @@ nav {
 
 .mounted {
   opacity: 1;
-  animation: fadein 0.5s ease;
+  animation: fadein 0.5s ease-in;
 }
 
 .course-card {
