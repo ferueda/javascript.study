@@ -152,7 +152,7 @@ const createCourseCard = (course) => {
   }" class="thumb__img" />
     </div>
     <div class="course-card__values">
-      <div class="values__author">by <strong>${course.author} </strong></div>
+      <div class="values__author"><strong>${course.author} </strong></div>
       <div class="values__reviews-container">&#11088; ${course.rating} ${
     course.students
       ? `<span class="values__reviews">(${formatNumber(
@@ -160,7 +160,9 @@ const createCourseCard = (course) => {
         )})</span>`
       : ''
   }</div>
-      <div><img src="${course.platformLogo}" style="max-height: 45px"/></div>
+      <div class="values__platform"><img src="${
+        course.platformLogo
+      }" style="max-height: 45px"/></div>
       
     </div>
     <div class="course-card__desc">${course.description}</div>
