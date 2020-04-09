@@ -60,15 +60,23 @@ nav {
 }
 
 .tech-container {
-  flex-grow: 1;
-  flex-basis: 0;
   max-width: 120px;
+  min-width: 80px;
+  flex: 1 1 0;
   text-align: center;
   cursor: pointer;
   transition: 0.2s ease-out;
   padding: 5px 0 0 0;
-  margin: 0 8px 20px 8px;
+  margin: 0 2px 20px 2px;
   border-radius: 5px;
+}
+
+.tech-container:first-child {
+  margin-left: 10px;
+}
+
+.tech-container:last-child {
+  margin-right: 10px;
 }
 
 .tech-logo-container {
@@ -82,13 +90,8 @@ nav {
 }
 
 .tech-container:hover {
-  background-color: var(--hoover-color);
   transform: scale(0.95);
 }
-
-/* .tech-container:active {
-  transform: scale(0.9);
-} */
 
 .tech-container--active {
   transform: scale(0.95);
@@ -189,6 +192,12 @@ nav {
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (hover) {
+  .tech-container:hover {
+    background-color: var(--hoover-color);
   }
 }
 
