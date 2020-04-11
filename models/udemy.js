@@ -30,6 +30,6 @@ udemyCourseSchema.set('toJSON', {
   },
 });
 
-const Udemy = mongoose.model('Udemy', udemyCourseSchema);
+const Udemy_course = mongoose.model('Udemy_course', udemyCourseSchema);
 
-module.exports = Udemy;
+module.exports = Udemy_course;

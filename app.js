@@ -2,8 +2,9 @@ const config = require('./utils/config');
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const udemyCoursesRouter = require('./controllers/udemyCourses');
 const middleware = require('./utils/middleware');
-const fetch = require('node-fetch');
+
 const logger = require('./utils/logger');
 const mongoose = require('mongoose');
 
@@ -21,15 +22,13 @@ mongoose
     logger.error('error connectingo to MongoDB: ', error.message);
   });
 
-app.get('/:tech', async (req, res) => {
-  const api_url = `https://www.udemy.com/api-2.0/courses/?search=${req.params.tech}&category=Development&ordering=relevance&is_affiliate_agreed=True&page=1&page_size=20`;
-  const fetch_response = await fetch(api_url, {
-    method: 'GET',
-    headers: {
-      Authorization: config.UDEMY_AUTH,
-    },
-  });
-  const json = await fetch_response.json();
-  console.log(json.results.length);
-  res.json(json);
-});
+app.use(cors());
+app.use(express.json());
+app.use(middleware.requestLogger);
+
+app.use('/udemy', udemyCoursesRouter);
+
+app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler);
+
+module.exports = app;
