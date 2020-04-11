@@ -2,7 +2,7 @@ const config = require('./utils/config');
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const udemyCoursesRouter = require('./controllers/udemyCourses');
+const udemyCourses = require('./controllers/udemyCourses');
 const middleware = require('./utils/middleware');
 
 const logger = require('./utils/logger');
@@ -26,7 +26,13 @@ app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger);
 
-app.use('/udemy', udemyCoursesRouter);
+app.use('/udemy', udemyCourses.udemyCoursesRouter);
+
+// setInterval(() => {
+//   udemyCourses.updateUdemyCoursesDB();
+// }, 1000 * 60);
+
+udemyCourses.updateUdemyCoursesDB();
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

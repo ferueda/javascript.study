@@ -9,7 +9,7 @@ const fixInstructors = (instructors) => {
   } else return instructors[0];
 };
 
-const postUdemyCourseToDB = async (data, tech = []) => {
+const postUdemyCourseToDB = async (data, tech) => {
   const courseData = {
     platform: 'udemy',
     udemy_id: data.id,
@@ -28,13 +28,27 @@ const postUdemyCourseToDB = async (data, tech = []) => {
     predictive_score: data.predictive_score,
     relevancy_score: data.relevancy_score,
     description: data.headline,
-    tags: [...tech],
+    tags: tech,
   };
 
   const newCourse = new Udemy_course(courseData);
 
   const savedCourse = await newCourse.save();
   console.log(`${savedCourse.title} was added successfully`);
+};
+
+const getUdemyCoursesData = async (tech) => {
+  const api_url = `https://www.udemy.com/api-2.0/courses/?search=${tech}&category=Development&ordering=relevance&is_affiliate_agreed=True&page=1&page_size=20`;
+  const fetch_response = await fetch(api_url, {
+    method: 'GET',
+    headers: {
+      Authorization: config.UDEMY_AUTH,
+    },
+  });
+
+  const data = await fetch_response.json();
+
+  return data;
 };
 
 const updateUdemyCoursesDB = async () => {
@@ -48,25 +62,21 @@ const updateUdemyCoursesDB = async () => {
     'gatsby',
   ];
 
-  const tech = 'javascript';
+  await Udemy_course.deleteMany({});
 
-  const api_url = `https://www.udemy.com/api-2.0/courses/?search=${tech}&category=Development&ordering=relevance&is_affiliate_agreed=True&page=1&page_size=20`;
-  const fetch_response = await fetch(api_url, {
-    method: 'GET',
-    headers: {
-      Authorization: config.UDEMY_AUTH,
-    },
-  });
+  ecosystem.forEach((tech, index) => {
+    setTimeout(async () => {
+      const coursesData = await getUdemyCoursesData(tech);
 
-  const data = await fetch_response.json();
-
-  data.results.forEach((course) => {
-    postUdemyCourseToDB(course, tech);
+      coursesData.results.forEach(async (course) => {
+        await postUdemyCourseToDB(course, tech);
+      });
+    }, 10000 * (index + 1));
   });
 };
 
 udemyCoursesRouter.get('/:tech', async (req, res) => {
-  const api_url = `https://www.udemy.com/api-2.0/courses/?search=${req.params.tech}&category=Development&ordering=relevance&is_affiliate_agreed=True&page=1&page_size=20`;
+  const api_url = `https://www.udemy.com/api-2.0/courses/?search=${req.params.tech}&category=Development&ordering=relevance&is_affiliate_agreed=True&page=1&page_size=10`;
   const fetch_response = await fetch(api_url, {
     method: 'GET',
     headers: {
@@ -78,4 +88,4 @@ udemyCoursesRouter.get('/:tech', async (req, res) => {
   res.json(json);
 });
 
-module.exports = udemyCoursesRouter;
+module.exports = { udemyCoursesRouter, updateUdemyCoursesDB };

@@ -17,7 +17,7 @@ const udemyCourseSchema = new mongoose.Schema({
   predictive_score: Number,
   relevancy_score: Number,
   description: String,
-  tags: [String],
+  tags: String,
   rating: Number,
   students: Number,
 });
