@@ -38,7 +38,7 @@ const postUdemyCourseToDB = async (data, tech) => {
 };
 
 const getUdemyCoursesData = async (tech) => {
-  const api_url = `https://www.udemy.com/api-2.0/courses/?search=${tech}&category=Development&ordering=relevance&is_affiliate_agreed=True&page=1&page_size=20`;
+  const api_url = `https://www.udemy.com/api-2.0/courses/?search=${tech}&category=Development&ordering=relevance&is_affiliate_agreed=True&page=1&page_size=10`;
   const fetch_response = await fetch(api_url, {
     method: 'GET',
     headers: {
@@ -71,7 +71,7 @@ const updateUdemyCoursesDB = async () => {
       coursesData.results.forEach(async (course) => {
         await postUdemyCourseToDB(course, tech);
       });
-    }, 10000 * (index + 1));
+    }, 5000 * (index + 1));
   });
 };
 
