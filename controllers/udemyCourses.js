@@ -9,6 +9,22 @@ const fixInstructors = (instructors) => {
   } else return instructors[0];
 };
 
+const filterCourses = (courses, tech) => {
+  if (tech === 'typescript') {
+    return courses.results.filter((course) => {
+      return !course.title.toLowerCase().includes('angular');
+    });
+  }
+
+  if (tech === 'javascript') {
+    return courses.results.filter((course) => {
+      return course.title.toLowerCase().includes('javascript');
+    });
+  }
+
+  return courses.results;
+};
+
 const postUdemyCourseToDB = async (data, tech) => {
   const courseData = {
     platform: 'udemy',
@@ -66,9 +82,11 @@ const updateUdemyCoursesDB = async () => {
 
   ecosystem.forEach((tech, index) => {
     setTimeout(async () => {
-      const coursesData = await getUdemyCoursesData(tech);
+      let coursesData = await getUdemyCoursesData(tech);
 
-      coursesData.results.forEach(async (course) => {
+      coursesData = filterCourses(coursesData, tech);
+
+      coursesData.forEach(async (course) => {
         await postUdemyCourseToDB(course, tech);
       });
     }, 5000 * (index + 1));
@@ -84,8 +102,12 @@ udemyCoursesRouter.get('/:tech', async (req, res) => {
     },
   });
   const json = await fetch_response.json();
-  console.log(json.results.length);
   res.json(json);
+});
+
+udemyCoursesRouter.get('/', async (req, res) => {
+  const courses = await Udemy_course.find({});
+  res.json(courses.map((course) => course.toJSON()));
 });
 
 module.exports = { udemyCoursesRouter, updateUdemyCoursesDB };

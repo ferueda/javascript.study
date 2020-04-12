@@ -26,11 +26,12 @@ app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger);
 
-app.use('/udemy', udemyCourses.udemyCoursesRouter);
+app.use('/api/courses', udemyCourses.udemyCoursesRouter);
+app.use('/api/udemy', udemyCourses.udemyCoursesRouter);
 
-// setInterval(() => {
-//   udemyCourses.updateUdemyCoursesDB();
-// }, 1000 * 60);
+setInterval(() => {
+  udemyCourses.updateUdemyCoursesDB();
+}, 1000 * 60 * 60);
 
 udemyCourses.updateUdemyCoursesDB();
 

@@ -1,75 +1,74 @@
 const coursesContainer = document.getElementById('courses-container');
-const coursesNumber = document.getElementById('courses-number');
 const techElements = [...document.querySelectorAll('.tech-container')];
 
-const courses = [
-  {
-    name: 'Modern JavaScript From The Beginning',
-    description:
-      'Learn and build projects with pure JavaScript, no frameworks or libraries',
-    author: 'Brad Traversy',
-    platform: 'Udemy',
-    url: 'https://www.udemy.com/course/modern-javascript-from-the-beginning/',
-    tags: ['javascript', 'react'],
-    thumbnail: 'https://img-a.udemycdn.com/course/480x270/1463348_52a4_2.jpg',
-    platformLogo: 'assets/logos/udemy-2.svg',
-    rating: 4.7,
-    students: 16708,
-  },
-  {
-    name: 'The Complete JavaScript Course 2020',
-    description:
-      'Master JavaScript  with the most complete course! Projects, challenges, quizzes, JavaScript ES6+, OOP, AJAX, Webpack',
-    author: 'Jonas Schmedtmann',
-    platform: 'Udemy',
-    url: 'https://www.udemy.com/course/the-complete-javascript-course/',
-    tags: ['javascript'],
-    thumbnail: 'https://img-a.udemycdn.com/course/240x135/851712_fc61_5.jpg',
-    platformLogo: 'assets/logos/udemy-2.svg',
-    rating: 4.6,
-    students: 67690,
-  },
-  {
-    name: 'The Modern JavaScript Bootcamp',
-    description:
-      'Learn JavaScript by building real-world apps. Includes 3 real-world projects, 80 programming challenges, and ES6/ES7!',
-    author: 'Andrew Mead',
-    platform: 'Udemy',
-    url: 'https://www.udemy.com/course/modern-javascript/',
-    tags: ['javascript'],
-    thumbnail: 'https://img-a.udemycdn.com/course/240x135/1470810_a8b0.jpg',
-    platformLogo: 'assets/logos/udemy-2.svg',
-    rating: 4.7,
-    students: 7991,
-  },
-  {
-    name: 'Beginners Javascript!',
-    description:
-      'Learn and build projects with pure JavaScript, no frameworks or libraries',
-    author: 'Wes Bos',
-    platform: 'wesbos',
-    url: 'https://beginnerjavascript.com/',
-    tags: ['javascript'],
-    thumbnail: 'assets/course-thumbs/beginner-javascript.jpg',
-    platformLogo: 'assets/logos/wes-bos.png',
-    rating: 4.9,
-    students: 12899,
-  },
-  {
-    name: 'Tyler Mcginnis: React',
-    description: `If you're serious about learning React, there's no better place to do it. Originally launched in 2016.`,
-    author: 'Tyler Mcginnis',
-    platform: 'tylermcginnis.com',
-    url: 'https://tylermcginnis.com/courses/react/',
-    tags: ['react'],
-    thumbnail: 'assets/course-thumbs/mcginnisreact.jpg',
-    platformLogo: 'assets/logos/tylermcginnis.svg',
-    rating: 4.8,
-    students: 0,
-  },
-];
+let courses = [];
 
-coursesNumber.textContent = courses.length;
+// const courses = [
+//   {
+//     name: 'Modern JavaScript From The Beginning',
+//     description:
+//       'Learn and build projects with pure JavaScript, no frameworks or libraries',
+//     author: 'Brad Traversy',
+//     platform: 'Udemy',
+//     url: 'https://www.udemy.com/course/modern-javascript-from-the-beginning/',
+//     tags: ['javascript', 'react'],
+//     thumbnail: 'https://img-a.udemycdn.com/course/480x270/1463348_52a4_2.jpg',
+//     platformLogo: 'assets/logos/udemy-2.svg',
+//     rating: 4.7,
+//     students: 16708,
+//   },
+//   {
+//     name: 'The Complete JavaScript Course 2020',
+//     description:
+//       'Master JavaScript  with the most complete course! Projects, challenges, quizzes, JavaScript ES6+, OOP, AJAX, Webpack',
+//     author: 'Jonas Schmedtmann',
+//     platform: 'Udemy',
+//     url: 'https://www.udemy.com/course/the-complete-javascript-course/',
+//     tags: ['javascript'],
+//     thumbnail: 'https://img-a.udemycdn.com/course/240x135/851712_fc61_5.jpg',
+//     platformLogo: 'assets/logos/udemy-2.svg',
+//     rating: 4.6,
+//     students: 67690,
+//   },
+//   {
+//     name: 'The Modern JavaScript Bootcamp',
+//     description:
+//       'Learn JavaScript by building real-world apps. Includes 3 real-world projects, 80 programming challenges, and ES6/ES7!',
+//     author: 'Andrew Mead',
+//     platform: 'Udemy',
+//     url: 'https://www.udemy.com/course/modern-javascript/',
+//     tags: ['javascript'],
+//     thumbnail: 'https://img-a.udemycdn.com/course/240x135/1470810_a8b0.jpg',
+//     platformLogo: 'assets/logos/udemy-2.svg',
+//     rating: 4.7,
+//     students: 7991,
+//   },
+//   {
+//     name: 'Beginners Javascript!',
+//     description:
+//       'Learn and build projects with pure JavaScript, no frameworks or libraries',
+//     author: 'Wes Bos',
+//     platform: 'wesbos',
+//     url: 'https://beginnerjavascript.com/',
+//     tags: ['javascript'],
+//     thumbnail: 'assets/course-thumbs/beginner-javascript.jpg',
+//     platformLogo: 'assets/logos/wes-bos.png',
+//     rating: 4.9,
+//     students: 12899,
+//   },
+//   {
+//     name: 'Tyler Mcginnis: React',
+//     description: `If you're serious about learning React, there's no better place to do it. Originally launched in 2016.`,
+//     author: 'Tyler Mcginnis',
+//     platform: 'tylermcginnis.com',
+//     url: 'https://tylermcginnis.com/courses/react/',
+//     tags: ['react'],
+//     thumbnail: 'assets/course-thumbs/mcginnisreact.jpg',
+//     platformLogo: 'assets/logos/tylermcginnis.svg',
+//     rating: 4.8,
+//     students: 0,
+//   },
+// ];
 
 let coursesToShow = [...courses];
 
@@ -97,9 +96,7 @@ const filterCourses = () => {
   if (filtered.length === 0) {
     coursesToShow = [...courses];
   } else {
-    coursesToShow = courses.filter((course) =>
-      course.tags.some((tag) => filtered.includes(tag))
-    );
+    coursesToShow = courses.filter((course) => filtered.includes(course.tags));
   }
 
   renderCourseCards(coursesToShow);
@@ -139,30 +136,57 @@ const createEmptyDiv = () => {
   return div;
 };
 
+// const createCourseCard = (course) => {
+//   const card = document.createElement('div');
+//   card.classList.add('course-card');
+//   card.setAttribute('data-groups', `[${course.tags.map((tag) => `"${tag}"`)}]`);
+//   card.addEventListener('click', () => window.open(course.url, '_blank'));
+//   card.innerHTML = `
+//     <div class="course-card__title">${course.name}</div>
+//     <div class="course-card__thumb">
+//     <img src="${course.thumbnail}" alt="${
+//     course.description
+//   }" class="thumb__img" />
+//     </div>
+//     <div class="course-card__values">
+//       <div class="values__author"><strong>${course.author} </strong></div>
+//       <div class="values__reviews-container">&#11088; ${course.rating} ${
+//     course.students
+//       ? `<span class="values__reviews">(${formatNumber(
+//           course.students
+//         )})</span>`
+//       : ''
+//   }</div>
+//       <div class="values__platform"><img src="${
+//         course.platformLogo
+//       }" style="max-height: 45px"/></div>
+
+//     </div>
+//     <div class="course-card__desc">${course.description}</div>
+//   `;
+//   return card;
+// };
+
 const createCourseCard = (course) => {
   const card = document.createElement('div');
   card.classList.add('course-card');
-  card.setAttribute('data-groups', `[${course.tags.map((tag) => `"${tag}"`)}]`);
-  card.addEventListener('click', () => window.open(course.url, '_blank'));
+  card.setAttribute('data-groups', `[${course.tags}]`);
+  card.addEventListener('click', () =>
+    window.open(`https://www.udemy.com${course.url}`, '_blank')
+  );
   card.innerHTML = `
-    <div class="course-card__title">${course.name}</div>
+    <div class="course-card__title">${course.title}</div>
     <div class="course-card__thumb">
-    <img src="${course.thumbnail}" alt="${
+    <img src="${course.course_thumb}" alt="${
     course.description
   }" class="thumb__img" />
     </div>
     <div class="course-card__values">
-      <div class="values__author"><strong>${course.author} </strong></div>
-      <div class="values__reviews-container">&#11088; ${course.rating} ${
-    course.students
-      ? `<span class="values__reviews">(${formatNumber(
-          course.students
-        )})</span>`
-      : ''
-  }</div>
-      <div class="values__platform"><img src="${
-        course.platformLogo
-      }" style="max-height: 45px"/></div>
+      <div class="values__author"><strong>${
+        course.instructor.instructor_title
+      } </strong></div>
+      <div class="values__reviews-container">&#11088; ${4.7}</div>
+      <div class="values__platform"><img src="assets/logos/udemy-2.svg" style="max-height: 45px"/></div>
       
     </div>
     <div class="course-card__desc">${course.description}</div>
@@ -170,4 +194,7 @@ const createCourseCard = (course) => {
   return card;
 };
 
-renderCourseCards(coursesToShow);
+getUdemyCourseData().then((data) => {
+  courses = [...data];
+  renderCourseCards(courses);
+});
