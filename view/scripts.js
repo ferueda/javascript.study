@@ -177,15 +177,11 @@ const createCourseCard = (course) => {
   card.innerHTML = `
     <div class="course-card__title">${course.title}</div>
     <div class="course-card__thumb">
-    <img src="${course.course_thumb}" alt="${
-    course.description
-  }" class="thumb__img" />
+    <img src="${course.course_thumb}" alt="${course.description}" class="thumb__img" />
     </div>
     <div class="course-card__values">
-      <div class="values__author"><strong>${
-        course.instructor.instructor_title
-      } </strong></div>
-      <div class="values__reviews-container">&#11088; ${4.7}</div>
+      <div class="values__author"><strong>${course.instructor.instructor_title} </strong></div>
+      
       <div class="values__platform"><img src="assets/logos/udemy-2.svg" style="max-height: 45px"/></div>
       
     </div>
@@ -193,6 +189,8 @@ const createCourseCard = (course) => {
   `;
   return card;
 };
+
+// <div class="values__reviews-container">&#11088; ${4.7}</div>
 
 getUdemyCourseData().then((data) => {
   courses = [...data];
