@@ -35,20 +35,17 @@ header h1 span {
   color: var(--js-yellow);
   font-weight: 900;
 }
-/* 
-.sub-title__js {
-  color: var(--js-yellow);
+
+header h1 a {
+  outline: none;
+  text-decoration: none;
 }
 
-.sub-title__react {
-  color: #61dbfb;
+header h1 a:visited,
+header h1 a:focus,
+header h1 a:active {
+  color: #fff;
 }
-.sub-title__vue {
-  color: #41b883;
-}
-.sub-title__ts {
-  color: #007acc;
-} */
 
 nav {
   max-width: 800px;
