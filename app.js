@@ -31,9 +31,9 @@ app.use('/api/udemy', udemyCourses.udemyCoursesRouter);
 
 setInterval(() => {
   udemyCourses.updateUdemyCoursesDB();
-}, 1000 * 60 * 60);
+}, 1000 * 60 * 60 * 12);
 
-udemyCourses.updateUdemyCoursesDB();
+// udemyCourses.updateUdemyCoursesDB();
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

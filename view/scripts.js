@@ -131,7 +131,7 @@ const formatNumber = (number) => {
 const createEmptyDiv = () => {
   const div = document.createElement('div');
   div.innerHTML = `
-    <h2>Oops... looks like there are no courses right now</h2>
+    <h2 class="notification">Oops... looks like there are no courses right now</h2>
   `;
   return div;
 };
