@@ -43,7 +43,8 @@ header h1 a {
 
 header h1 a:visited,
 header h1 a:focus,
-header h1 a:active {
+header h1 a:active,
+header h1 a:link {
   color: #fff;
 }
 
