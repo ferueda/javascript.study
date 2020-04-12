@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const udemyCourses = require('./controllers/udemyCourses');
 const middleware = require('./utils/middleware');
+const fetch = require('node-fetch');
 
 const logger = require('./utils/logger');
 const mongoose = require('mongoose');
@@ -31,7 +32,11 @@ app.use('/api/udemy', udemyCourses.udemyCoursesRouter);
 
 setInterval(() => {
   udemyCourses.updateUdemyCoursesDB();
-}, 1000 * 60 * 60 * 12);
+}, 1000 * 60 * 12);
+
+setInterval(() => {
+  fetch('https://boiling-taiga-70590.herokuapp.com/api/udemy');
+}, 1000 * 60 * 27);
 
 // udemyCourses.updateUdemyCoursesDB();
 
