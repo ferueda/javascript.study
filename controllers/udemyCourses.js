@@ -22,6 +22,10 @@ const filterCourses = (courses, tech) => {
     });
   }
 
+  if (tech === 'gatsby') {
+    return courses.results.slice(0, 5);
+  }
+
   return courses.results;
 };
 
