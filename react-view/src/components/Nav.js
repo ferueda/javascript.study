@@ -1,7 +1,7 @@
 import React from 'react';
 import Tech from './Tech';
 
-const Nav = () => {
+const Nav = ({ handleTechFilter, filter }) => {
   const logosSrc = [
     'JavaScript',
     'React',
@@ -20,6 +20,8 @@ const Nav = () => {
             key={logo}
             imgSrc={`assets/logos/${logo}.svg`}
             tech={`${logo}`}
+            handleTechFilter={handleTechFilter}
+            filter={filter}
           />
         );
       })}

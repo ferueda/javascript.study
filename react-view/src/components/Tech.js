@@ -1,8 +1,16 @@
 import React from 'react';
 
-const Tech = ({ imgSrc, tech }) => {
+const Tech = ({ imgSrc, tech, handleTechFilter, filter }) => {
   return (
-    <div className='tech-container' data-tech='javascript'>
+    <div
+      className={
+        filter === tech.toLowerCase()
+          ? 'tech-container tech-container--active'
+          : 'tech-container'
+      }
+      data-tech={tech.toLowerCase()}
+      onClick={handleTechFilter}
+    >
       <div className='logo-tech-container'>
         <img src={imgSrc} alt={`${tech} logo`} />
       </div>

@@ -6,7 +6,13 @@ const CourseCard = ({ course }) => {
   };
 
   return (
-    <div className='course-card' data-groups={`[${course.tags}]`}>
+    <div
+      className='course-card'
+      data-groups={`[${course.tags}]`}
+      onClick={() =>
+        window.open(`https://www.udemy.com${course.url}`, '_blank')
+      }
+    >
       <div className='course-card__title'>{course.title}</div>
       <div className='course-card__thumb'>
         <img
