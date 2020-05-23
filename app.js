@@ -34,10 +34,6 @@ setInterval(() => {
   udemyCourses.updateUdemyCoursesDB();
 }, 1000 * 60 * 12);
 
-setInterval(() => {
-  fetch('https://boiling-taiga-70590.herokuapp.com/api/udemy');
-}, 1000 * 60 * 27);
-
 // udemyCourses.updateUdemyCoursesDB();
 
 app.use(middleware.unknownEndpoint);

@@ -7,7 +7,6 @@ import CourseContainer from './components/CourseContainer';
 function App() {
   const [courses, setCourses] = useState([]);
   const [courseFilter, setCourseFilter] = useState(null);
-
   useEffect(() => {
     udemyService.getAll().then((data) => setCourses(data));
   }, []);
